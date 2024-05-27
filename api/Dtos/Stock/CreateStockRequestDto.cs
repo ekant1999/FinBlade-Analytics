@@ -3,9 +3,8 @@ using api.Modles;
 
 namespace api.Dtos.Stock
 {
-    public class StockDto
+    public class CreateStockRequestDto
     {
-        public int Id { get; set; }
         public string Symbol { get; set; } = string.Empty;
         public string CompanyName { get; set; } =  string.Empty;
 
@@ -16,5 +15,6 @@ namespace api.Dtos.Stock
 
         public long MarketCap { get; set; } 
 
+        public List<Comment> Comments { get; set; } = new List<Comment>();
     }
 }

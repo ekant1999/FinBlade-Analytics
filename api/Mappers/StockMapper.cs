@@ -1,7 +1,7 @@
 using api.Modles;
-using Project_Course.Api.Dtos.Stock;
+using api.Dtos.Stock;
 
-namespace Project_Course.Mappers
+namespace api.Mappers
 {
     public static class StockMapper
     {
@@ -16,6 +16,18 @@ namespace Project_Course.Mappers
                 LastDiv = stockModel.LastDiv,
                 Industry = stockModel.Industry,
                 MarketCap = stockModel.MarketCap,
+            };
+        }
+        public static Stock ToStockFromStockDto(this CreateStockRequestDto stockDto)
+        {
+            return new Stock
+            {
+                Symbol = stockDto.Symbol,
+                CompanyName = stockDto.CompanyName,
+                Purchase = stockDto.Purchase,
+                LastDiv = stockDto.LastDiv,
+                Industry = stockDto.Industry,
+                MarketCap = stockDto.MarketCap,
             };
         }
     }
