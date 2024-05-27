@@ -1,13 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using api.Data;
 using api.Modles;
-using Project_Course.Mappers;
+using api.Mappers;
+using api.Dtos.Stock;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace YourNamespace.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class StockController : Controller
     {
-       private readonly ApplicationDBContext _context;
+        private readonly ApplicationDBContext _context;
 
         public StockController(ApplicationDBContext context)
         {
@@ -15,28 +21,46 @@ namespace YourNamespace.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetStocks()
+        public async Task<IActionResult> GetStocks()
         {
-            var stocks = _context.Stocks.ToList().Select(s => s.TostockDto());
-            return Ok(stocks);
+            var stocks = await _context.Stocks
+                                       .AsNoTracking()
+                                       .ToListAsync();
+            var stockDtos = stocks.Select(s => s.TostockDto());
+            return Ok(stockDtos);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetStock(int id)
+        public async Task<IActionResult> GetStock(int id)
         {
-            var stock = _context.Stocks.Find(id);
+            var stock = await _context.Stocks
+                                      .AsNoTracking()
+                                      .FirstOrDefaultAsync(s => s.Id == id);
             if (stock == null)
             {
                 return NotFound();
             }
             return Ok(stock.TostockDto());
         }
+
         [HttpPost]
-        public IActionResult AddStock([FromBody] Stock stock)
+        public async Task<IActionResult> Create([FromBody] CreateStockRequestDto stockDto)
         {
-            _context.Stocks.Add(stock);
-            _context.SaveChanges();
-            return Ok(stock.TostockDto());
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var stockModel = stockDto.ToStockFromStockDto();
+            if (stockModel == null)
+            {
+                return BadRequest("Invalid stock data.");
+            }
+
+            _context.Stocks.Add(stockModel);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetStock), new { id = stockModel.Id }, stockModel.TostockDto());
         }
     }
 }
