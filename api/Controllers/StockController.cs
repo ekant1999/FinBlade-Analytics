@@ -7,6 +7,7 @@ using api.Dtos.Stock;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Repository;
+using api.Helper;
 
 namespace YourNamespace.Controllers
 {
@@ -23,15 +24,23 @@ namespace YourNamespace.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetStocks()
+        public async Task<IActionResult> GetStocks([FromQuery] QueryObject queryObject)
         {
-            var stocks = await _stockRepository.GetAllStocksAsync();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var stocks = await _stockRepository.GetAllStocksAsync(queryObject);
             return Ok(stocks);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetStock(int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var stock = await _stockRepository.GetStockByIdAsync(id);
             if (stock == null)
             {
@@ -60,20 +69,24 @@ namespace YourNamespace.Controllers
             return CreatedAtAction(nameof(GetStock), new { id = stockModel.Id }, stockModel.TostockDto());
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var stock = await _stockRepository.DeleteStockAsync(id);
 
             if (stock == null)
             {
-                return NotFound();
+                return NotFound("Stock not found.");
             }
 
-            return NoContent();
+            return Ok("Stock deleted successfully.");
         }
 
-        [HttpPut("{id}")]   
+        [HttpPut("{id:int}")]   
         public async Task<IActionResult> Update(int id, [FromBody] UpdateStockRequestDto stockDto)
         {
             if (!ModelState.IsValid)
@@ -85,10 +98,10 @@ namespace YourNamespace.Controllers
 
             if (stockModel == null)
             {
-                return NotFound();
+                return NotFound("stock not found.");
             }
             
-            return NoContent();
+            return Ok(stockModel.TostockDto());
         }
     }
 } 

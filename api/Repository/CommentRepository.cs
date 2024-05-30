@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using api.Data;
+using api.Dtos.Comment;
 using api.Interfaces;
 using api.Modles;
 using Microsoft.EntityFrameworkCore;
@@ -30,27 +31,24 @@ namespace api.Repository
             return comment;
         }
 
-        public async Task<Comment?> UpdateCommentAsync(int id, Comment comment)
+        public async Task<Comment?> UpdateCommentAsync(int id, UpdateCommentReqDto commentReqDto)
         {
-            var existingComment = await _context.Comments.FirstOrDefaultAsync(c => c.Id == id);
+            var existingComment = await _context.Comments.FindAsync(id);
             if (existingComment == null)
             {
                 return null;
             }
 
-             existingComment.Title = comment.Title;
-             existingComment.Content = comment.Content;
-             existingComment.CreatedOn = comment.CreatedOn;
-             existingComment.StockId = comment.StockId;
+             existingComment.Title = commentReqDto.Title;
+             existingComment.Content = commentReqDto.Content;
 
-            _context.Comments.Update(existingComment);
             await _context.SaveChangesAsync();
             return existingComment;
         }
 
         public async Task<Comment?> DeleteCommentAsync(int id)
         {
-            var comment = await _context.Comments.FindAsync(id);
+            var comment = await _context.Comments.FirstOrDefaultAsync(x=>x.Id == id);
             if (comment == null)
             {
                 return null;

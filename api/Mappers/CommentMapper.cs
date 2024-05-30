@@ -1,6 +1,7 @@
 using api.Modles;
 using api.Dtos;
 using api.Dtos.Comment;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace api.Mappers
 {
@@ -10,30 +11,29 @@ namespace api.Mappers
         {
             return new CommentDto
             {
-                Id = comment.Id,
                 Title = comment.Title, 
                 Content = comment.Content,
                 CreatedOn = comment.CreatedOn,
                 StockId = comment.StockId,
             };
         }
+        public static Comment ToCommentFromCommentDto(this CreateCommentRequestDto createCommentRequestDto, int stockId)
+        {
+            return new Comment
+            {
+                Title = createCommentRequestDto.Title,
+                Content = createCommentRequestDto.Content,
+                StockId = stockId,
+            };
+        }
 
-        // public static Comment ToCommentFromCreateCommentRequestDto(this CreateCommentRequestDto commentDto)
-        // {
-        //     return new Comment
-        //     {
-        //         Author = commentDto.Author,
-        //         Body = commentDto.Body,
-        //     };
-        // }
-
-        // public static Comment ToCommentFromUpdateCommentRequestDto(this UpdateCommentRequestDto commentDto)
-        // {
-        //     return new Comment
-        //     {
-        //         Author = commentDto.Author,
-        //         Body = commentDto.Body,
-        //     };
-        // }
+        public static Comment ToCommentFrompdateCommentDto(this UpdateCommentReqDto updateCommentReqDto)
+        {
+            return new Comment
+            {
+                Title = updateCommentReqDto.Title,
+                Content = updateCommentReqDto.Content
+            };
+        }
     }
 }
