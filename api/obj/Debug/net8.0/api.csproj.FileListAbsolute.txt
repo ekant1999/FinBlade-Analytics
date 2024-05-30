@@ -8,6 +8,8 @@ C:\Project_Course\api\bin\Debug\net8.0\api.pdb
 C:\Project_Course\api\bin\Debug\net8.0\Azure.Core.dll
 C:\Project_Course\api\bin\Debug\net8.0\Azure.Identity.dll
 C:\Project_Course\api\bin\Debug\net8.0\Humanizer.dll
+C:\Project_Course\api\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Project_Course\api\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Project_Course\api\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Project_Course\api\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Project_Course\api\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
@@ -33,6 +35,8 @@ C:\Project_Course\api\bin\Debug\net8.0\Microsoft.OpenApi.dll
 C:\Project_Course\api\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
 C:\Project_Course\api\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
 C:\Project_Course\api\bin\Debug\net8.0\Mono.TextTemplating.dll
+C:\Project_Course\api\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Project_Course\api\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
 C:\Project_Course\api\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Project_Course\api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Project_Course\api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll

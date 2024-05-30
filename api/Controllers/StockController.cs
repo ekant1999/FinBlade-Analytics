@@ -6,6 +6,7 @@ using api.Mappers;
 using api.Dtos.Stock;
 using System.Linq;
 using System.Threading.Tasks;
+using api.Repository;
 
 namespace YourNamespace.Controllers
 {
@@ -14,28 +15,24 @@ namespace YourNamespace.Controllers
     public class StockController : Controller
     {
         private readonly ApplicationDBContext _context;
-
+        private readonly StockRepository _stockRepository;
         public StockController(ApplicationDBContext context)
         {
             _context = context;
+            _stockRepository = new StockRepository(context);
         }
 
         [HttpGet]
         public async Task<IActionResult> GetStocks()
         {
-            var stocks = await _context.Stocks
-                                       .AsNoTracking()
-                                       .ToListAsync();
-            var stockDtos = stocks.Select(s => s.TostockDto());
-            return Ok(stockDtos);
+            var stocks = await _stockRepository.GetAllStocksAsync();
+            return Ok(stocks);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetStock(int id)
         {
-            var stock = await _context.Stocks
-                                      .AsNoTracking()
-                                      .FirstOrDefaultAsync(s => s.Id == id);
+            var stock = await _stockRepository.GetStockByIdAsync(id);
             if (stock == null)
             {
                 return NotFound();
@@ -45,22 +42,53 @@ namespace YourNamespace.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateStockRequestDto stockDto)
+        {  
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var stockModel = stockDto.ToStockFromCreateStockRequestDto();
+
+            if (stockModel == null)
+            {
+                return BadRequest("Invalid stock data.");
+            }
+
+            var stock = await _stockRepository.CreateStockAsync(stockModel);
+
+            return CreatedAtAction(nameof(GetStock), new { id = stockModel.Id }, stockModel.TostockDto());
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var stock = await _stockRepository.DeleteStockAsync(id);
+
+            if (stock == null)
+            {
+                return NotFound();
+            }
+
+            return NoContent();
+        }
+
+        [HttpPut("{id}")]   
+        public async Task<IActionResult> Update(int id, [FromBody] UpdateStockRequestDto stockDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var stockModel = stockDto.ToStockFromStockDto();
+            var stockModel = await _stockRepository.UpdateStockAsync(id, stockDto);
+
             if (stockModel == null)
             {
-                return BadRequest("Invalid stock data.");
+                return NotFound();
             }
-
-            _context.Stocks.Add(stockModel);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetStock), new { id = stockModel.Id }, stockModel.TostockDto());
+            
+            return NoContent();
         }
     }
-}
+} 
