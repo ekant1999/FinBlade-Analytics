@@ -1,11 +1,3 @@
-C:\Project_Course\api\obj\Debug\net8.0\api.csproj.AssemblyReference.cache
-C:\Project_Course\api\obj\Debug\net8.0\api.GeneratedMSBuildEditorConfig.editorconfig
-C:\Project_Course\api\obj\Debug\net8.0\api.AssemblyInfoInputs.cache
-C:\Project_Course\api\obj\Debug\net8.0\api.AssemblyInfo.cs
-C:\Project_Course\api\obj\Debug\net8.0\api.csproj.CoreCompileInputs.cache
-C:\Project_Course\api\obj\Debug\net8.0\api.MvcApplicationPartsAssemblyInfo.cs
-C:\Project_Course\api\obj\Debug\net8.0\api.MvcApplicationPartsAssemblyInfo.cache
-C:\Project_Course\api\obj\Debug\net8.0\api.sourcelink.json
 C:\Project_Course\api\bin\Debug\net8.0\appsettings.Development.json
 C:\Project_Course\api\bin\Debug\net8.0\appsettings.json
 C:\Project_Course\api\bin\Debug\net8.0\api.exe
@@ -16,6 +8,10 @@ C:\Project_Course\api\bin\Debug\net8.0\api.pdb
 C:\Project_Course\api\bin\Debug\net8.0\Azure.Core.dll
 C:\Project_Course\api\bin\Debug\net8.0\Azure.Identity.dll
 C:\Project_Course\api\bin\Debug\net8.0\Humanizer.dll
+C:\Project_Course\api\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Project_Course\api\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Project_Course\api\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Project_Course\api\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Project_Course\api\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
 C:\Project_Course\api\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Project_Course\api\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
@@ -31,6 +27,9 @@ C:\Project_Course\api\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Design.dll
 C:\Project_Course\api\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Project_Course\api\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\Project_Course\api\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
+C:\Project_Course\api\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+C:\Project_Course\api\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Project_Course\api\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
 C:\Project_Course\api\bin\Debug\net8.0\Microsoft.Identity.Client.dll
 C:\Project_Course\api\bin\Debug\net8.0\Microsoft.Identity.Client.Extensions.Msal.dll
 C:\Project_Course\api\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
@@ -126,6 +125,14 @@ C:\Project_Course\api\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Drawing.Co
 C:\Project_Course\api\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 C:\Project_Course\api\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Project_Course\api\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Project_Course\api\obj\Debug\net8.0\api.csproj.AssemblyReference.cache
+C:\Project_Course\api\obj\Debug\net8.0\api.GeneratedMSBuildEditorConfig.editorconfig
+C:\Project_Course\api\obj\Debug\net8.0\api.AssemblyInfoInputs.cache
+C:\Project_Course\api\obj\Debug\net8.0\api.AssemblyInfo.cs
+C:\Project_Course\api\obj\Debug\net8.0\api.csproj.CoreCompileInputs.cache
+C:\Project_Course\api\obj\Debug\net8.0\api.MvcApplicationPartsAssemblyInfo.cs
+C:\Project_Course\api\obj\Debug\net8.0\api.MvcApplicationPartsAssemblyInfo.cache
+C:\Project_Course\api\obj\Debug\net8.0\api.sourcelink.json
 C:\Project_Course\api\obj\Debug\net8.0\staticwebassets.build.json
 C:\Project_Course\api\obj\Debug\net8.0\staticwebassets.development.json
 C:\Project_Course\api\obj\Debug\net8.0\staticwebassets\msbuild.api.Microsoft.AspNetCore.StaticWebAssets.props
