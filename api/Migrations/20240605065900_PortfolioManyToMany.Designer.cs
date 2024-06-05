@@ -12,8 +12,8 @@ using api.Data;
 namespace api.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20240531201658_seed")]
-    partial class seed
+    [Migration("20240605065900_PortfolioManyToMany")]
+    partial class PortfolioManyToMany
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,6 +50,26 @@ namespace api.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "939b4a42-3160-4388-8783-12c2b6ac472d",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "d5376ac7-0b66-484d-803a-413cb997b09c",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        },
+                        new
+                        {
+                            Id = "32966a00-7639-4267-b1c3-90e17bf3af65",
+                            Name = "Moderator",
+                            NormalizedName = "MODERATOR"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -252,6 +272,21 @@ namespace api.Migrations
                     b.ToTable("Comments");
                 });
 
+            modelBuilder.Entity("api.Modles.Portfolio", b =>
+                {
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("StockId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AppUserId", "StockId");
+
+                    b.HasIndex("StockId");
+
+                    b.ToTable("Portfolios");
+                });
+
             modelBuilder.Entity("api.Modles.Stock", b =>
                 {
                     b.Property<int>("Id")
@@ -346,9 +381,35 @@ namespace api.Migrations
                     b.Navigation("Stock");
                 });
 
+            modelBuilder.Entity("api.Modles.Portfolio", b =>
+                {
+                    b.HasOne("api.Modles.AppUser", "AppUser")
+                        .WithMany("Portfolios")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("api.Modles.Stock", "Stock")
+                        .WithMany("Portfolios")
+                        .HasForeignKey("StockId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Stock");
+                });
+
+            modelBuilder.Entity("api.Modles.AppUser", b =>
+                {
+                    b.Navigation("Portfolios");
+                });
+
             modelBuilder.Entity("api.Modles.Stock", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("Portfolios");
                 });
 #pragma warning restore 612, 618
         }
