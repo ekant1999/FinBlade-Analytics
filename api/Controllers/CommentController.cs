@@ -53,25 +53,31 @@ namespace api.Controllers
             {
                 return BadRequest(ModelState);
             }
+            
+            var userName = User.GetUserName();
+            var appUser = await _userManager.FindByNameAsync(userName);
             var comment =await _commentRepository.GetCommentByIdAsync(id);
+            
             if (comment == null)
             {
                 return NotFound();
             }
+            comment.AppUserId = appUser.Id;
+            
             return Ok(comment.ToCommentDto());
         }
 
         // POST api/comment
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> CreateComment([FromRoute] int stockId ,[FromBody]  CreateCommentRequestDto commentModel)
+        public async Task<IActionResult> CreateComment(int stockId , CreateCommentRequestDto commentModel)
         { 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
             
-            if (!await _stockRepository.StockExistsAsync(stockId))
+            if (await _stockRepository.StockExistsAsync(stockId) == null)
             {
                 return BadRequest("Stock does not exist");
             }   
@@ -86,12 +92,14 @@ namespace api.Controllers
 
         // PUT api/comment/{id}
         [HttpPut("{id:int}")]
+        [Authorize]
         public async Task<IActionResult> UpdateComment([FromRoute]int id, [FromBody] UpdateCommentReqDto commentModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            var userName = User.GetUserName();
             var comment = await _commentRepository.UpdateCommentAsync(id, commentModel);
 
             if (comment == null)

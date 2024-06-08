@@ -90,7 +90,6 @@ namespace api.Controllers
 
             var userName = User.GetUserName();
             var appUser = await _userManager.FindByNameAsync(userName);  
-
             var portfolio = await _portfolioRepo.DeletePortfoliosAsync(appUser,symbol);
 
             if(portfolio == null)
