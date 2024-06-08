@@ -90,10 +90,11 @@ public class StockRepository : IStockRepository
         return stockModel;
     }
 
-    public async Task<bool> StockExistsAsync(int id)
+    public async Task<Stock?> StockExistsAsync(int stockId)
     {
-        return await _context.Stocks.AnyAsync(s => s.Id == id);
+        return await _context.Stocks.FirstOrDefaultAsync(s => s.Id == stockId);
     }
+
 
     public async Task<Stock?> GetStockBySymbolAsync(string symbol)
     {

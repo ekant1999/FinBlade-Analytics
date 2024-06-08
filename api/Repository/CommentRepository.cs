@@ -26,14 +26,14 @@ namespace api.Repository
 
         public async Task<Comment> AddCommentAsync(Comment comment)
         {
-            await _context.Comments.AddAsync(comment);
+             _context.Comments.Add(comment);
             await _context.SaveChangesAsync();
             return comment;
         }
 
         public async Task<Comment?> UpdateCommentAsync(int id, UpdateCommentReqDto commentReqDto)
         {
-            var existingComment = await _context.Comments.FindAsync(id);
+            var existingComment = await _context.Comments.FirstOrDefaultAsync(a=>a.Id == id);
             if (existingComment == null)
             {
                 return null;
