@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using api.Data;
 using api.Dtos.Comment;
 using api.extensions;
+using api.Helper;
 using api.Interfaces;
 using api.Mappers;
 using api.Modles;
@@ -34,13 +35,13 @@ namespace api.Controllers
         // GET api/comment
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> GetComments()
+        public async Task<IActionResult> GetComments([FromQuery] CommentsQueryObject commentsQueryObject)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var comments =await _commentRepository.GetAllCommentsAsync();
+            var comments =await _commentRepository.GetAllCommentsAsync(commentsQueryObject);
             var commentDto = comments.Select(c => c.ToCommentDto());
             return Ok(commentDto);
         }
