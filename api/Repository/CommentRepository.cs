@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using api.Data;
 using api.Dtos.Comment;
+using api.Helper;
 using api.Interfaces;
 using api.Modles;
 using Microsoft.EntityFrameworkCore;
@@ -14,9 +16,21 @@ namespace api.Repository
         {
             _context = context;
         }
-        public async Task<IEnumerable<Comment>> GetAllCommentsAsync()
+        public async Task<IEnumerable<Comment>> GetAllCommentsAsync(CommentsQueryObject commentsQueryObject)
         {
-            return await _context.Comments.Include(a=>a.AppUser).ToListAsync();
+            var comment =  _context.Comments.Include(a=>a.AppUser).AsQueryable();
+            if(!string.IsNullOrEmpty(commentsQueryObject.Symbol))
+            {
+                comment = comment.Where(a=>a.Stock != null && a.Stock.Symbol.ToLower() == commentsQueryObject.Symbol.ToLower());   
+            }
+            if(!string.IsNullOrWhiteSpace(commentsQueryObject.SortBy))
+            {
+                if(commentsQueryObject.SortBy.Equals("Title", StringComparison.OrdinalIgnoreCase))
+                {
+                    comment = commentsQueryObject.IsSortDescending ? comment.OrderByDescending(s => s.Title) : comment.OrderBy(s => s.Title);
+                }
+            }
+            return await comment.ToListAsync();
         }
 
         public async Task<Comment?> GetCommentByIdAsync(int id)

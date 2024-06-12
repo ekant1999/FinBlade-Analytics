@@ -1,3 +1,11 @@
+C:\Project_Course\api\obj\Debug\net8.0\api.csproj.AssemblyReference.cache
+C:\Project_Course\api\obj\Debug\net8.0\api.GeneratedMSBuildEditorConfig.editorconfig
+C:\Project_Course\api\obj\Debug\net8.0\api.AssemblyInfoInputs.cache
+C:\Project_Course\api\obj\Debug\net8.0\api.AssemblyInfo.cs
+C:\Project_Course\api\obj\Debug\net8.0\api.csproj.CoreCompileInputs.cache
+C:\Project_Course\api\obj\Debug\net8.0\api.MvcApplicationPartsAssemblyInfo.cs
+C:\Project_Course\api\obj\Debug\net8.0\api.MvcApplicationPartsAssemblyInfo.cache
+C:\Project_Course\api\obj\Debug\net8.0\api.sourcelink.json
 C:\Project_Course\api\bin\Debug\net8.0\appsettings.Development.json
 C:\Project_Course\api\bin\Debug\net8.0\appsettings.json
 C:\Project_Course\api\bin\Debug\net8.0\api.exe
@@ -125,14 +133,6 @@ C:\Project_Course\api\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Drawing.Co
 C:\Project_Course\api\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 C:\Project_Course\api\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Project_Course\api\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
-C:\Project_Course\api\obj\Debug\net8.0\api.csproj.AssemblyReference.cache
-C:\Project_Course\api\obj\Debug\net8.0\api.GeneratedMSBuildEditorConfig.editorconfig
-C:\Project_Course\api\obj\Debug\net8.0\api.AssemblyInfoInputs.cache
-C:\Project_Course\api\obj\Debug\net8.0\api.AssemblyInfo.cs
-C:\Project_Course\api\obj\Debug\net8.0\api.csproj.CoreCompileInputs.cache
-C:\Project_Course\api\obj\Debug\net8.0\api.MvcApplicationPartsAssemblyInfo.cs
-C:\Project_Course\api\obj\Debug\net8.0\api.MvcApplicationPartsAssemblyInfo.cache
-C:\Project_Course\api\obj\Debug\net8.0\api.sourcelink.json
 C:\Project_Course\api\obj\Debug\net8.0\staticwebassets.build.json
 C:\Project_Course\api\obj\Debug\net8.0\staticwebassets.development.json
 C:\Project_Course\api\obj\Debug\net8.0\staticwebassets\msbuild.api.Microsoft.AspNetCore.StaticWebAssets.props
